@@ -15,9 +15,9 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
-  deploy:
-  docker:
-    - image: "circleci/python:3.6.4" 
+  bala:
+    docker:
+      - image: "circleci/python:3.6.4"
 
 workflows:
   build_and_test:
@@ -25,7 +25,7 @@ workflows:
       - build
       - test:
         requires:
-            - hold
+            - build
       - hold:
           type: approval
           requires:
