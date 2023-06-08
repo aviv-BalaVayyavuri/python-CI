@@ -8,8 +8,6 @@ jobs:
     steps:
       - checkout
       - run: python3 main.py
-  hold: # <<< A job that will require manual approval in the CircleCI web application.
-    type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
   test:
     #working_directory: ~/circleci-python
     docker:
@@ -17,6 +15,9 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
+  deploy:
+  docker:
+    - image: "circleci/python:3.6.4" 
 
 workflows:
   build_and_test:
@@ -24,4 +25,11 @@ workflows:
       - build
       - test:
         requires:
+            - hold
+      - hold:
+          type: approval
+          requires:
+            - test
+      - deploy:
+          requires:
             - hold
