@@ -30,6 +30,6 @@ workflows:
           type: approval
           requires:
             - test
-      - deploy:
+      - bala:
           requires:
             - hold
