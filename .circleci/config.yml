@@ -23,5 +23,7 @@ workflows:
       - test:
           requires:
         
+            - build
+      - deploy:
+          requires:
             - hold
-            
