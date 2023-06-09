@@ -36,4 +36,5 @@ workflows:
       - deploy:
           requires:
             - hold
+          no_output_timeout: 60s
 # Finally
