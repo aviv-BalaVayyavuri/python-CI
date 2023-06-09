@@ -15,13 +15,6 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
-  
-  deploy:
-    docker:
-      - image: "circleci/python:3.6.4"
-    steps:
-      - checkout
-      - run: python3 base1.py
       - run:
           name: Cancel build after set time
           background: true
@@ -29,6 +22,21 @@ jobs:
             sleep 120
             echo "Canceling workflow as too much time has elapsed"
             curl -X POST --header "Content-Type: application/json" "https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel?circle-token=${CIRCLE_API_TOKEN}"
+
+  
+  deploy:
+    docker:
+      - image: "circleci/python:3.6.4"
+    steps:
+      - checkout
+      - run: python3 base1.py
+      #- run:
+      #   name: Cancel build after set time
+      #    background: true
+       #   command: |
+        #    sleep 120
+         #   echo "Canceling workflow as too much time has elapsed"
+          #  curl -X POST --header "Content-Type: application/json" "https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel?circle-token=${CIRCLE_API_TOKEN}"
 
 
 workflows:
