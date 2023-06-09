@@ -43,7 +43,6 @@ workflows:
           requires:
             - test
       - deploy:
-          when: << pipeline.parameters.test.result == 'success' >>
           requires:
             - hold
 # Finally
