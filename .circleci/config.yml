@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
       - run: python3 base1.py
-      - no_output_timeout: 60s
+      - timeout: 60s
 
 
 workflows:
