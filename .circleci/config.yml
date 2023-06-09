@@ -15,6 +15,7 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
+      - timeout: 60
   
   deploy:
     docker:
@@ -22,7 +23,6 @@ jobs:
     steps:
       - checkout
       - run: python3 base1.py
-      - timeout: 60s
 
 
 workflows:
@@ -37,6 +37,7 @@ workflows:
           requires:
             - test
       - deploy:
+          when: << pipeline.parameters.test.result == 'success' >>
           requires:
             - hold
 # Finally
