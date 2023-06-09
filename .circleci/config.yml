@@ -22,6 +22,8 @@ jobs:
     steps:
       - checkout
       - run: python3 base1.py
+      - no_output_timeout: 60s
+
 
 workflows:
   build_and_test:
@@ -34,8 +36,6 @@ workflows:
           type: approval
           requires:
             - test
-      - run:
-          no_output_timeout: 30m
       - deploy:
           requires:
             - hold
