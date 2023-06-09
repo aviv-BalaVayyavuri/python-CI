@@ -1,6 +1,13 @@
 version: 2.1
 
 jobs:
+  run:
+    name: Check for newer workflow
+    background: true
+    command: |
+      curl --request POST \
+        --url https://circleci.com/api/v2/workflow/$CIRCLE_API_TOKEN/cancel \
+        --header 'authorization: Basic REPLACE_BASIC_AUTH'
   build:
     #working_directory: ~/circleci-python
     docker:
