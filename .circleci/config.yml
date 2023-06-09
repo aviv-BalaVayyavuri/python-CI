@@ -22,7 +22,6 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
-      - timeout: 60
   
   deploy:
     docker:
