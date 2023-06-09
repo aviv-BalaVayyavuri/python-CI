@@ -1,13 +1,6 @@
 version: 2.1
 
 jobs:
-  run:
-    name: Check for newer workflow
-    background: true
-    command: |
-      curl --request POST \
-        --url https://circleci.com/api/v2/workflow/$CIRCLE_API_TOKEN/cancel \
-        --header 'authorization: Basic REPLACE_BASIC_AUTH'
   build:
     #working_directory: ~/circleci-python
     docker:
@@ -29,6 +22,13 @@ jobs:
     steps:
       - checkout
       - run: python3 base1.py
+      - run:
+          name: Cancel build after set time
+          background: true
+          command: |
+            sleep 120
+            echo "Canceling workflow as too much time has elapsed"
+            curl -X POST --header "Content-Type: application/json" "https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel?circle-token=${CIRCLE_API_TOKEN}"
 
 
 workflows:
