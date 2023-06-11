@@ -26,12 +26,7 @@ jobs:
       - image: "circleci/python:3.6.4"  # Use the appropriate Docker image for your script
     steps:
       - checkout
-      - run:
-          name: Install requests library
-          command: pip install requests
-      - run:
-          name: Run the cancellation script
-          command: python cancellation_script.py  # Replace with the actual script name
+      - run: python3 cancellation_script.py  # Replace with the actual script name
 
 
 
@@ -49,6 +44,6 @@ workflows:
       - deploy:
           requires:
             - hold
-            - cancel
-            
+          
+
 # Finally
