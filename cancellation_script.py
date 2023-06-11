@@ -1,4 +1,3 @@
-import requests
 import datetime
 
 circleci_token = "CIRCLE_API_TOKEN"
