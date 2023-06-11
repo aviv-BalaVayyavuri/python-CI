@@ -37,9 +37,9 @@ workflows:
       - test:
           requires:
             - build
-      - cancel
 
       - hold:
+          timeout: 60
           type: approval
           requires:
             - test
