@@ -41,6 +41,7 @@ workflows:
           type: approval
           requires:
             - test
+      - cancel
       - deploy:
           requires:
             - hold
