@@ -1,4 +1,5 @@
 import datetime
+import requests
 
 circleci_token = "CIRCLE_API_TOKEN"
 workflow_id = "PROJECT_ID"
