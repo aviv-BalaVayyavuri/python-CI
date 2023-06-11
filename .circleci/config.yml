@@ -35,11 +35,11 @@ workflows:
     jobs:
       - build
       - test:
+          timeout: 180
           requires:
             - build
 
       - hold:
-          timeout: 60
           type: approval
           requires:
             - test
