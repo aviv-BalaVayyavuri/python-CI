@@ -15,6 +15,7 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
+      - timeout: 180
   deploy:
     docker:
       - image: "circleci/python:3.6.4"
@@ -35,7 +36,6 @@ workflows:
     jobs:
       - build
       - test:
-          timeout: 180
           requires:
             - build
 
