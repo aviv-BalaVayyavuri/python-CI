@@ -37,11 +37,12 @@ workflows:
       - test:
           requires:
             - build
+      - cancel
+
       - hold:
           type: approval
           requires:
             - test
-      - cancel
       - deploy:
           requires:
             - hold
