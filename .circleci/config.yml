@@ -21,6 +21,14 @@ jobs:
     steps:
       - checkout
       - run: python3 base1.py
+  cancel:
+    docker:
+      - image: "circleci/python:3.6.4"  # Use the appropriate Docker image for your script
+    steps:
+      - checkout
+      - run: python3 cancellation_script.py  # Replace with the actual script name
+
+
 
 workflows:
   build_and_test:
@@ -29,6 +37,7 @@ workflows:
       - test:
           requires:
             - build
+
       - hold:
           type: approval
           requires:
@@ -36,4 +45,6 @@ workflows:
       - deploy:
           requires:
             - hold
+          
+
 # Finally
