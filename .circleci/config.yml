@@ -33,7 +33,7 @@ jobs:
 
   shellcheck:
     docker: 
-      - image: "shellcheck:stable"
+      - image: koalaman/shellcheck-alpine:stable
     steps:
       - checkout
       - shellcheck/install
