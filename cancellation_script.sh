@@ -12,7 +12,7 @@ m=${1}-1 # add minus 1
 Floor() {
   DIVIDEND=${1}
   DIVISOR=${2}
-  RESULT=$(( ( "{DIVIDEND} - ( {DIVIDEND} % {DIVISOR}) )/{DIVISOR}" ))
+  RESULT=$(( ( ${DIVIDEND} - ( ${DIVIDEND} % ${DIVISOR}) )/${DIVISOR} ))
   echo ${RESULT}
 }
 
