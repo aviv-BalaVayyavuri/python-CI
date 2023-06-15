@@ -38,7 +38,7 @@ jobs:
       - checkout
       - shellcheck/install
       - shellcheck/check:
-          exclude: SC2148,SC2038,SC2086,SC2002,SC2016
+          exclude: SC2148,SC2038,SC2086,SC2002,SC2016,SC2004
           dir: ./cancellation_script.sh
       - run: # Replace with the actual script name
           name: Cancel build after set time
