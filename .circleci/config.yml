@@ -24,12 +24,6 @@ jobs:
       - checkout
       - run: python3 base1.py
 
- # cancel_py:
-  #  docker:
-  #    - image: "circleci/python:3.6.4"  # Use the appropriate Docker image for your script
-  #  steps:
-  #    - checkout
-  #    - run: python3 cancellation_script.py  # Replace with the actual script name
 
   shellcheck:
     docker: 
