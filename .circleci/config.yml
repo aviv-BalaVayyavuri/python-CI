@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  shellcheck: circleci/shellcheck@2.0.0
+  shellcheck: circleci/shellcheck@3.1
 
 jobs:
   build:
@@ -31,23 +31,22 @@ jobs:
   #    - checkout
   #    - run: python3 cancellation_script.py  # Replace with the actual script name
 
-
-  shellcheck/check:
-    docker: 
-    - image: koalaman/shellcheck-alpine:stable
-    steps:
-      - chekout
-      
+  shellcheck:
+      - checkout
+      - shellcheck/install
+      - shellcheck/check:
+          exclude: SC2148,SC2038,SC2086,SC2002,SC2016
+          dir: ./cancellation_script.sh
       - run: # Replace with the actual script name
           name: Cancel build after set time
           background: true
           command: |
-            circle_timeout.bash 300
+            cancellation_script.sh 300
           
 workflows:
   build_and_test:
     jobs:
-      - shellcheck/check
+      - shellcheck
       - build
       - test:
           requires:
