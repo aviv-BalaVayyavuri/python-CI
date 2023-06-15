@@ -23,9 +23,9 @@ Timecount(){
     MIN=$(Floor ${s} 60)
     SEC=$((${s}-60*${MIN}))
     while [ "$HOUR" -ge 0 ]; do
-        while [ $MIN -ge 0 ]; do
-            while [ $SEC -ge 0 ]; do
-                printf "%02d:%02d:%02d\033[0K\r" "$HOUR" "$MIN" $SEC
+        while [ "$MIN" -ge 0 ]; do
+            while [ "$SEC" -ge 0 ]; do
+                printf "%02d:%02d:%02d\033[0K\r" "$HOUR" "$MIN" "$SEC"
                 SEC=$((SEC-1))
                 sleep 1
             done
