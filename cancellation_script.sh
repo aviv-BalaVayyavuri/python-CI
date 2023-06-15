@@ -12,16 +12,16 @@ m=${1}-1 # add minus 1
 Floor() {
   DIVIDEND=${1}
   DIVISOR=${2}
-  RESULT=$(( ( ${DIVIDEND} - ( ${DIVIDEND} % ${DIVISOR}) )/${DIVISOR} ))
+  RESULT=$(( ( {DIVIDEND} - ( {DIVIDEND} % {DIVISOR}) )/{DIVISOR} ))
   echo ${RESULT}
 }
 
 Timecount(){
     s=${1}
     HOUR=$(Floor "${s}" $((60/60)))
-    s=$((${s}-(60*60*${HOUR})))
+    s=$(({s}-(60*60*{HOUR})))
     MIN=$(Floor ${s} 60)
-    SEC=$((${s}-60*${MIN}))
+    SEC=$(({s}-60*{MIN}))
     while [ "$HOUR" -ge 0 ]; do
         while [ "$MIN" -ge 0 ]; do
             while [ "$SEC" -ge 0 ]; do
