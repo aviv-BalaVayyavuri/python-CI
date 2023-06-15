@@ -21,7 +21,7 @@ Timecount(){
     HOUR=$(Floor "${s}" $((60/60)))
     s=$(("{s}-(60*60*{HOUR})"))
     MIN=$(Floor ${s} 60)
-    SEC=$(({s}-60*{MIN}))
+    SEC=$((${s}-60*${MIN}))
     while [ "$HOUR" -ge 0 ]; do
         while [ "$MIN" -ge 0 ]; do
             while [ "$SEC" -ge 0 ]; do
