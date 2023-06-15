@@ -32,6 +32,9 @@ jobs:
   #    - run: python3 cancellation_script.py  # Replace with the actual script name
 
   shellcheck:
+    docker: 
+      - image: "shellcheck:stable"
+    steps:
       - checkout
       - shellcheck/install
       - shellcheck/check:
