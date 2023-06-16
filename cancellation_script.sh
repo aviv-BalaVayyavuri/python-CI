@@ -36,4 +36,10 @@ Timecount(){
 }
 Timecount $m
 echo "Canceling workflow after 60 mins"
-curl -X POST --header "Content-Type: application/json" "https://circleci.com/api/v2/python-CI/a898756e-1d7c-41bb-8cd2-304a632bc65a/cancel?circle-token=9132a82b22d57350edfb52bea86433f76619050b 
+# curl -X POST --header "Content-Type: application/json" "https://circleci.com/api/v2/workflow/${CIRCLE_WORKFLOW_ID}/cancel?circle-token=${CIRCLE_API_TOKEN}"
+
+# https://circleci.com/api/v2/workflow/{id}/cancel
+
+curl --request POST \
+  --url https://circleci.com/api/v2/workflow/${CIRCLE_API_TOKEN}/cancel \
+  --header 'authorization: Basic REPLACE_BASIC_AUTH'
