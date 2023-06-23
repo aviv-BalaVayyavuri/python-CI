@@ -38,7 +38,7 @@ jobs:
           name: Cancel build after set time
           background: true
           command: |
-            cancellation_script.sh 300
+            cancellation_script.sh 3story00
           
 workflows:
   build_and_test:
@@ -56,5 +56,3 @@ workflows:
       - deploy:
           requires:
             - hold
-
-# Finally
