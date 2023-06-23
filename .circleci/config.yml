@@ -53,6 +53,7 @@ workflows:
           type: approval
           requires:
             - test
+          timeout: 180
       - deploy:
           requires:
             - hold
