@@ -42,6 +42,10 @@ workflows:
           type: approval
           requires:
             - test
+          lock-timeout:
+            default: 60s
+            description: Configure a custom state lock timeout
+            type: string
       - deploy:
           requires:
             - hold
