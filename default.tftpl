@@ -1,0 +1,610 @@
+{
+  "title": "${dashboard_prefix_name} - Global overview",
+  "description": "Provide a global overview for Aviv Unified Contract Gateway Service
+ monitoring",
+  "is_read_only": ${is_read_only},
+  "widgets": [
+    {
+      "id": 4574891870093231,
+      "definition": {
+        "title": "Unified Contract Gateway Service
+ API statistics",
+        "background_color": "blue",
+        "show_title": true,
+        "type": "group",
+        "layout_type": "ordered",
+        "widgets": [
+          {
+            "id": 3134811856138305,
+            "definition": {
+              "title": "Total Creation call",
+              "title_size": "16",
+              "title_align": "left",
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "default_zero(query1)"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.count{method:post,resource:/classifieds,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar",
+                  "conditional_formats": [
+                    {
+                      "comparator": "<",
+                      "value": 1,
+                      "palette": "red_on_white"
+                    }
+                  ]
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "req",
+              "precision": 0
+            },
+            "layout": {
+              "x": 0,
+              "y": 0,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 3513618698236910,
+            "definition": {
+              "title": "Creation success",
+              "title_size": "16",
+              "title_align": "left",
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "query1 - query2 - query3"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.count{method:post,resource:/classifieds,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.4xxerror{method:post,resource:/classifieds,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query2",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.5xxerror{method:post,resource:/classifieds,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query3",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar",
+                  "conditional_formats": [
+                    {
+                      "comparator": "<",
+                      "value": 1,
+                      "palette": "red_on_white"
+                    }
+                  ]
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "req",
+              "precision": 0
+            },
+            "layout": {
+              "x": 3,
+              "y": 0,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 2701950597307914,
+            "definition": {
+              "title": "Creation errors",
+              "title_size": "16",
+              "title_align": "left",
+              "time": {},
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "query1 + query2"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.4xxerror{method:post,resource:/classifieds,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.5xxerror{method:post,resource:/classifieds,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query2",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar"
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "err",
+              "precision": 0
+            },
+            "layout": {
+              "x": 6,
+              "y": 0,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 7548719728566502,
+            "definition": {
+              "title": "Total Get calls",
+              "title_size": "16",
+              "title_align": "left",
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "default_zero(query1)"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.count{method:get,resource:/classifieds/_classifiedid,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar",
+                  "conditional_formats": [
+                    {
+                      "comparator": "<",
+                      "value": 1,
+                      "palette": "red_on_white"
+                    }
+                  ]
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "req",
+              "precision": 0
+            },
+            "layout": {
+              "x": 0,
+              "y": 1,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 8584801713605900,
+            "definition": {
+              "title": "Get success",
+              "title_size": "16",
+              "title_align": "left",
+              "time": {},
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "query1 - query2 - query3"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.count{method:get,resource:/classifieds/_classifiedid ,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.4xxerror{method:get,resource:/classifieds/_classifiedid ,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query2",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.5xxerror{method:get,resource:/classifieds/_classifiedid ,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query3",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar",
+                  "conditional_formats": [
+                    {
+                      "comparator": "<",
+                      "value": 1,
+                      "palette": "red_on_white"
+                    }
+                  ]
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "req",
+              "precision": 0
+            },
+            "layout": {
+              "x": 3,
+              "y": 1,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 4372506699370196,
+            "definition": {
+              "title": "Get errors",
+              "title_size": "16",
+              "title_align": "left",
+              "time": {},
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "query1 + query2"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.4xxerror{method:get,resource:/classifieds/_classifiedid,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.5xxerror{method:get,resource:/classifieds/_classifiedid,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query2",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar"
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "err",
+              "precision": 0
+            },
+            "layout": {
+              "x": 6,
+              "y": 1,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 6954086562916116,
+            "definition": {
+              "title": "Total Update calls",
+              "title_size": "16",
+              "title_align": "left",
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "default_zero(query1)"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.count{method:put,resource:/classifieds/_classifiedid,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar",
+                  "conditional_formats": [
+                    {
+                      "comparator": "<",
+                      "value": 1,
+                      "palette": "red_on_white"
+                    }
+                  ]
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "req",
+              "precision": 0
+            },
+            "layout": {
+              "x": 0,
+              "y": 2,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 2397288744246198,
+            "definition": {
+              "title": "Update success",
+              "title_size": "16",
+              "title_align": "left",
+              "time": {},
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "query1 - query2 - query3"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.count{method:put,resource:/classifieds/_classifiedid ,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.4xxerror{method:put,resource:/classifieds/_classifiedid ,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query2",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.5xxerror{method:put,resource:/classifieds/_classifiedid ,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query3",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar",
+                  "conditional_formats": [
+                    {
+                      "comparator": "<",
+                      "value": 1,
+                      "palette": "red_on_white"
+                    }
+                  ]
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "req",
+              "precision": 0
+            },
+            "layout": {
+              "x": 3,
+              "y": 2,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 2778234577444330,
+            "definition": {
+              "title": "Update errors",
+              "title_size": "16",
+              "title_align": "left",
+              "time": {},
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "query1 + query2"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.4xxerror{method:put,resource:/classifieds/_classifiedid,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.5xxerror{method:put ,resource:/classifieds/_classifiedid,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query2",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar"
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "err",
+              "precision": 0
+            },
+            "layout": {
+              "x": 6,
+              "y": 2,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 4571326692882724,
+            "definition": {
+              "title": "Total Delete calls",
+              "title_size": "16",
+              "title_align": "left",
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "default_zero(query1)"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.count{method:delete,resource:/classifieds/_classifiedid,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar",
+                  "conditional_formats": [
+                    {
+                      "comparator": "<",
+                      "value": 1,
+                      "palette": "red_on_white"
+                    }
+                  ]
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "req",
+              "precision": 0
+            },
+            "layout": {
+              "x": 0,
+              "y": 3,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 1635472816742322,
+            "definition": {
+              "title": "Delete success",
+              "title_size": "16",
+              "title_align": "left",
+              "time": {},
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "query1 - query2 - query3"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.count{method:delete ,resource:/classifieds/_classifiedid ,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.4xxerror{method:delete,resource:/classifieds/_classifiedid ,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query2",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.5xxerror{method:delete,resource:/classifieds/_classifiedid ,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query3",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar",
+                  "conditional_formats": [
+                    {
+                      "comparator": "<",
+                      "value": 1,
+                      "palette": "red_on_white"
+                    }
+                  ]
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "req",
+              "precision": 0
+            },
+            "layout": {
+              "x": 3,
+              "y": 3,
+              "width": 3,
+              "height": 1
+            }
+          },
+          {
+            "id": 7857792874449924,
+            "definition": {
+              "title": "Delete errors",
+              "title_size": "16",
+              "title_align": "left",
+              "time": {},
+              "type": "query_value",
+              "requests": [
+                {
+                  "formulas": [
+                    {
+                      "formula": "query1 + query2"
+                    }
+                  ],
+                  "queries": [
+                    {
+                      "query": "sum:aws.apigateway.4xxerror{method:delete ,resource:/classifieds/_classifiedid,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query1",
+                      "aggregator": "sum"
+                    },
+                    {
+                      "query": "sum:aws.apigateway.5xxerror{method:delete ,resource:/classifieds/_classifiedid,$environment}.as_count()",
+                      "data_source": "metrics",
+                      "name": "query2",
+                      "aggregator": "sum"
+                    }
+                  ],
+                  "response_format": "scalar"
+                }
+              ],
+              "autoscale": false,
+              "custom_unit": "err",
+              "precision": 0
+            },
+            "layout": {
+              "x": 6,
+              "y": 3,
+              "width": 3,
+              "height": 1
+            }
+          }
+        ]
+      },
+      "layout": {
+        "x": 0,
+        "y": 0,
+        "width": 10,
+        "height": 5
+      }
+    }
+  ],
+  "template_variables": [
+    {
+      "name": "environment",
+      "prefix": "environment",
+      "available_values": [
+        "sandbox",
+        "dev",
+        "preview",
+        "live"
+      ],
+      "default": "${default_env}"
+    }
+  ],
+  "layout_type": "ordered",
+  "notify_list": [],
+  "reflow_type": "fixed"
+}
